@@ -53,6 +53,17 @@ void testFruitCatapult() {
     assertEquals("apple", fruitCatapult.getName());
 }
 ```
+
+So what’s the problem?
+
+This approach doesn’t scale well:
+
+You have to manually create fake classes for everything
+If your controller has 4 dependencies → you stub all 4
+If dependencies have dependencies → it snowballs fast
+
+Apple is still tightly coupled to FruitCatapult even though we are using constructor
+
 3. 
 
 
