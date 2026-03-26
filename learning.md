@@ -62,7 +62,7 @@ You have to manually create fake classes for everything
 If your controller has 4 dependencies → you stub all 4
 If dependencies have dependencies → it snowballs fast
 
-Apple is still tightly coupled to FruitCatapult even though we are using constructor
+Apple is still tightly coupled to FruitCatapult even though we are using constructor. If we want to throw an orange we still have to change the code of FruitCatapult
 
 3. 
 
