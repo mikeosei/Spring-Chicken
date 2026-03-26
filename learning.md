@@ -19,7 +19,40 @@ return "throw" + orange.getName();
 }
 ```
 
-2. Testing difficulty, tight coupling of Apple to FruitCatapult makes it hard to test FruitCatapult in isolation. What if Apple method creation creates the multiple threads or unnecessary db calls. Directly intantiating the Apple as it was done prevents stubbing,
+2. Testing difficulty, tight coupling of Apple to FruitCatapult makes it hard to test FruitCatapult in isolation. What if Apple method creation creates the multiple threads or unnecessary db calls. Directly intantiating the Apple outside of the construct makes testing only FruitCatapult difficult.
+
+
+Does  using a constructor fix rippling effect and testing difficulty
+
+Yes and No
+Using a constructor makes testing easier because now a stub can be passed into the FruitCatapult during unit testing
+```
+public class FruitCatapult() {
+  private Apple apple;
+  public FruitCatapult(Apple apple) {
+    this.apple = apple;
+
+}
+
+public String throw() {
+return "throw" + apple.getName();
+}
+```
+```
+class FakeApple implements APple {
+    public String getName() {
+        return "apple";
+    }
+}
+
+@Test
+void testFruitCatapult() {
+    FakeApple fake = new FakeApple();
+    FruitCatapult fruitCatapult = new FruitCatapult(fake);
+
+    assertEquals("apple", fruitCatapult.getName());
+}
+```
 3. 
 
 
